@@ -5,71 +5,158 @@
 }
 
 body {
-    
-    
+    background-color: black;
 }
 
-div.top > h1 {
-    color: white;
-    text-shadow: 1px 1px 2px black;
-    font-size: 30px;
-    
+@font-face {
+    src: url("pixelfont-7.ttf");
+    font-family: pixelfont;
 }
 
-div.trending > h1 {
+.year23 {
+    font-family: pixelfont;
     text-align: center;
-    font-size: 20px;
-
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+    color: white;
+    padding: 10px;
 }
 
-.watch-list, .search-view  {
-    color: white;
-    background-color: transparent;
-    border: 1px solid white;
-    padding: 5px;
-    cursor: pointer;
+.movies23 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.img23 {
+    width: 260px;
+}
+
+iframe {
+    width: 760px;
+    height: 427px;
+}
+
+@media (max-width: 992px) {
+    .movies23 {
+        flex-direction: column;
+    }
+    .img23, iframe {
+        width: 500px;
+    }
+
 }
 
 .top {
-    position: sticky;
-    padding: 25px;
-    color: white;
-    background-color: #2c3e50;
     width: 100%;
-    height: 6rem;
+    height: 4rem;
     display: flex;
-    justify-content: space-between;
-}
-
-form {
-    width: 80%;
-    display: flex;
-    padding: 20px 0px;
-    margin: auto;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    padding: 0 1.2rem;
+    justify-content: space-between;
+    font-family: pixelfont;
+    background-color: #3836369d;
+
+}
+
+bx-home {
+    font-family: pixelfont;
+    color: yellow;
+}
+
+.top-logo {
+    color: yellow;
+    text-shadow: 1px 1px 2px black;
+    font-size: 25px;
+    margin: 0;
+    text-align: center;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration-color: yellow;
 }
 
 .search-bar {
-    width: 40rem;
-    padding: 5px;
-    border: 1px solid #2c3e50;
+    border: none;
     background-color: white;
+    width: 70%;
+    max-width: 800px;
 }
 
 .search-btn {
-    background-color: #2c3e50;
-    color: white;
-    border: 1px solid #2c3e50;
-    padding: 5px;
+    background-color:transparent;
+    color: yellow;
+    border: 1px solid yellow;
+    cursor: pointer;
+}
+
+form {
+    display: flex;
+    width: 70%;
+    max-width: 800px;
+    justify-content: center;
+}
+
+.watch-list, .search-view  {
+    color: yellow;
+    background-color: transparent;
+    border: 1px solid yellow;
+    padding: 3px;
+    font-size: 15px;
     cursor: pointer;
 }
 
 
+.trending-title, .loading-message {
+    text-align: center;
+    display: block;
+    font-size: 35px;
+    font-family: pixelfont;
+    padding-top: 20px;
+    color: white;
+    overflow: hidden;
+    margin: 40px auto;
+    white-space: nowrap;
+    animation: 
+        typing 3.5s steps(40, end),
+        blink-caret .75s step-end infinite;
+}
+
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #d1db15; }
+  }
+
+.trailer {
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+
+  }
+
+  .t1 > h2, .t2 > h2 {
+    color: white;
+    font-size: 15px;
+    font-family: pixelfont;
+    text-align: center;
+  }
+
+  .t2 {
+    padding-top:  15px;
+  }
+
 .movie-list, .my-watchlist {
     width: 80%;
-    color: black;
+    color: yellow;
     margin: 0 auto;
     display: flex;
     padding: 20px;
@@ -80,7 +167,7 @@ form {
 
 
 .my-watchlist {
-    color: white;
+    color: black;
     padding: 30px;
 }
 
@@ -95,52 +182,60 @@ form {
     font-weight: bold;
     font-size: 1.2rem;
     padding-bottom: 10px;
-    color: black;
+    color: white;
 }
 
 .runtime, .genre, .rating {
     text-align: center;
     font-size: small;
     padding-right: 10px;
-    color: black;
+    color: white;
     display: inline;
 }
 
 .plot {
     padding-top: 10px;
-    color: black;
+    color: white;
+}
+
+.carousel {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
 }
 
 
 img {
-    width: 150px;
     padding-top: 20px;
     color: black;
+    margin: 0 auto;
 }
 
 .add, .remove {
-    border: none;
+    border: 1px solid black;
     display: inline;
     background-color: transparent;
     cursor: pointer;
-    color: white;
-    background-color: #2c3e50;
-    padding: 5px;
+    color: black;
+    background-color: yellow;
+    font-size: 12px;
+    padding: 3px;
+    font-family: pixelfont;
 }
 
 
 .empty {
     text-align: center;
     padding: 20px;
-    color: #2c3e50;
+    margin: 100px auto;
 }
 
-h2 {
-    padding-bottom: 20px;
+.empty > h3 {
+    padding-top: 10px;
 }
 
 .fa-star {
-    color: rgb(197, 197, 29);
+    color: rgb(211, 211, 34);
 }
 
 
@@ -151,11 +246,18 @@ h2 {
     }
 
     .my-watchlist, .movie-list {
-        width: 50%;
+        width: 60%;
     }
 
-    form {
-        width: 50%;
-    }
+}
+
+.load {
+    font-size: 40px;
+}
+
+.unknown {
+    font-size: 15px;
+    font-family: pixelfont;
+    text-align: center;
 }
 

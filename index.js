@@ -1,19 +1,28 @@
-
 // DOM elements manipulated
 const searchButton = document.getElementById("search-btn")
 const watchList = document.getElementById("watch-list")
 const movieList = document.getElementById("movie-list")
-const trendingMovies = document.getElementById("trending")
+const home = document.getElementById("home")
+const homeLogo = document.getElementById("home-logo")
+  
 
 // Arrays used 
 let movieDetailArray = []
 let savedMovies = []
+
+
+homeLogo.addEventListener("click", function() {
+    location.href = "index.html"
+})
 
 // Used any time search button is clicked 
 searchButton.addEventListener("click", async function(e){
     e.preventDefault()
     let searchInput = document.getElementById("search-input")
     searchInput = searchInput.value
+
+    home.innerHTML = ""
+    displayLoadingMessage()
     getMovieDetails(searchInput)
    
 })
@@ -24,9 +33,8 @@ async function getMovieDetails(searchInput) {
     const data = await res.json()
 
     if (data.Response === 'True') {
-        
-        let searchedMovies = data.Search
 
+        let searchedMovies = data.Search
         movieDetailArray = []
         for (let movie of searchedMovies) {
             const res = await fetch(`https://www.omdbapi.com/?i=${movie.imdbID}&plot=short&type=movie&r=json&apikey=8427e3ea`)
@@ -36,17 +44,23 @@ async function getMovieDetails(searchInput) {
     
         }
 
-        movieList.style.background = "white"
+        movieList.style.background = "black"
         renderMovie(movieDetailArray)
     }
 
     else {
-    movieList.innerHTML = "<h3>Sorry, we couldn't find what you're looking for... Try searching something else.</h3>"
+    movieList.innerHTML = `<h3 class="unknown">Sorry, we couldn't find what you're looking for... Try searching something else.</h3>`
     }
 }
 
+function displayLoadingMessage() {
+    movieList.innerHTML = `<p class='loading-message'>Page loading...</p>`;
+  }
+
+
 // Rendering HTML to the DOM
 function renderMovie(movieDetailArray) {
+
     let movieHtml = ""
     for (let movie of movieDetailArray) {
 
@@ -65,28 +79,21 @@ function renderMovie(movieDetailArray) {
         }
 
     }
-    trendingMovies.innerHTML = ""
     movieList.innerHTML = movieHtml
 
-    // if (movie.Poster == "N/A") {
-    //     movieList.getElementById("movie-img").innerHTML = '<img src="images/no-img-avail.jpeg" id="movie-img" class="movie-img"></img>'
-    // }
 }
-
-
 
 // Add a movie to watchlist 
 document.addEventListener("click", function(e) {
     e.preventDefault()
     if (e.target.dataset.add) {
-        console.log("hi")
         addToWatchlist(e.target.dataset.add)
     }
 })
 
 // Add movies to local storage
 function addToWatchlist(movieId) {
-    const targetMovieObj = movieDetailArray.find(movie => movie.imdbID == movieId)
+    const targetMovieObj = movieDetailArray.find(movie => movie.imdbID === movieId)
     savedMovies.push(targetMovieObj)
     localStorage.setItem('myMovies', JSON.stringify(savedMovies))
 
@@ -98,7 +105,3 @@ function addToWatchlist(movieId) {
 watchList.addEventListener("click", function() {
     location.href = "watchlist.html"
 })
-
-
-
-
