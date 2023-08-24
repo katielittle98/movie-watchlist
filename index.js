@@ -60,7 +60,6 @@ function displayLoadingMessage() {
 
 // Rendering HTML to the DOM
 function renderMovie(movieDetailArray) {
-
     let movieHtml = ""
     for (let movie of movieDetailArray) {
 
